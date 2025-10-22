@@ -69,7 +69,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="30dp"
         android:layout_toEndOf="@id/buttonAumentarTamanio"
-        android:text="DisminuirTamanio" />
+        android:text="Disminuir Tamanio" />
 
     <Button
         android:id="@+id/buttonCambiarColor"
