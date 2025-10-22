@@ -6,8 +6,6 @@ import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import model.Cuadrado
 
 class MainActivity : AppCompatActivity() {
@@ -19,8 +17,8 @@ class MainActivity : AppCompatActivity() {
         //Indentificacion de la cista
         val cuadradoView : View = findViewById<View>(R.id.cuadrado)
 
-        /*usamos metodo post para que se ejecute este bloque de cogido en el hilo de la interfaz de usuario justo después de que se cargue la vista
-        se construya y se mida
+        /*usamos metodo post para que se ejecute este bloque de cogido en el hilo de la interfaz de usuario justo después de que se cargue
+        la vista se construya y se mida
         */
 
         cuadradoView.post{
@@ -41,7 +39,8 @@ class MainActivity : AppCompatActivity() {
             var buttonAbajo : Button = findViewById<Button>(R.id.buttonAbajo)
             var buttonDerecha : Button = findViewById<Button>(R.id.buttonDerecha)
             var buttonIzquierda : Button = findViewById<Button>(R.id.buttonIzquierda)
-            var buttonCambiarTamanio : Button = findViewById<Button>(R.id.buttonCambiarTamanio)
+            var buttonAumentarTamanio : Button = findViewById<Button>(R.id.buttonAumentarTamanio)
+            var buttonDisminuirtamanio : Button = findViewById<Button>(R.id.buttonDisminuirTamanio)
             var buttonCambiarColor : Button = findViewById<Button>(R.id.buttonCambiarColor)
 
             //Ponemos botones a la escucha
@@ -64,8 +63,37 @@ class MainActivity : AppCompatActivity() {
                 actualizarVista(cuadrado, cuadradoView)
             }
 
-            buttonCambiarTamanio.setOnClickListener {
-                cuadrado.cambiarTamanio(150,150)
+            buttonAumentarTamanio.setOnClickListener {
+                //cuadrado.cambiarTamanio(150,150)
+
+                // 1. Obtenemos el tamaño actual desde el objeto 'cuadrado'
+                val anchoActual = cuadrado.ancho
+                val altoActual = cuadrado.alto
+
+                // 2. Calculamos el nuevo tamaño sumando el incremento
+                val nuevoAncho = anchoActual + 10
+                val nuevoAlto = altoActual + 10
+
+                // 3. Establecemos el nuevo tamaño
+                cuadrado.cambiarTamanio(nuevoAncho, nuevoAlto)
+
+                actualizarVista(cuadrado, cuadradoView)
+            }
+
+            buttonDisminuirtamanio.setOnClickListener {
+                //cuadrado.cambiarTamanio(150,150)
+
+                // 1. Obtenemos el tamaño actual desde el objeto 'cuadrado'
+                val anchoActual = cuadrado.ancho
+                val altoActual = cuadrado.alto
+
+                // 2. Calculamos el nuevo tamaño sumando el incremento
+                val nuevoAncho = anchoActual - 10
+                val nuevoAlto = altoActual - 10
+
+                // 3. Establecemos el nuevo tamaño
+                cuadrado.cambiarTamanio(nuevoAncho, nuevoAlto)
+
                 actualizarVista(cuadrado, cuadradoView)
             }
 

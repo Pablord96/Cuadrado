@@ -53,19 +53,29 @@
         android:text="Derecha" />
 
     <Button
-        android:id="@+id/buttonCambiarTamanio"
+        android:id="@+id/buttonAumentarTamanio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonAbajo"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@id/buttonIzquierda"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
-        android:text="Cambiar Tamaño" />
+        android:text="Aumentar Tamaño" />
+
+    <Button
+        android:id="@+id/buttonDisminuirTamanio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonDerecha"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@id/buttonAumentarTamanio"
+        android:text="DisminuirTamanio" />
 
     <Button
         android:id="@+id/buttonCambiarColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonCambiarTamanio"
+        android:layout_below="@id/buttonAumentarTamanio"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="Cambiar Color" />

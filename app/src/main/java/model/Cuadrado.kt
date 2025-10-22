@@ -3,9 +3,9 @@ package model
 class Cuadrado (var color: Int, var ancho: Int, var alto: Int){
     //Coordenadas iniciales
 
-    var x :Int=0
+    var x :Int = 0
 
-    var y :Int=0
+    var y :Int = 0
 
     //Metemos para mover cambiar el cuadrado
 
@@ -30,10 +30,4 @@ class Cuadrado (var color: Int, var ancho: Int, var alto: Int){
         alto = nuevoAlto
 
     }
-
-    fun cambiarColor(nuevoColor: Int) {
-        color = nuevoColor
-    }
-
-
 }
