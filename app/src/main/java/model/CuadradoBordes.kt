@@ -2,9 +2,9 @@ package model
 
 import android.graphics.Color
 
-class CuadradoBordes(color: Int, ancho: Int, alto: Int, var colorBorde: Int) : Cuadrado(color, ancho, alto) {
+class CuadradoBordes(color: Int, ancho: Int, alto: Int, var colorBorde: Int = Color.BLACK) : Cuadrado(color, ancho, alto) {
 
-    fun ponerBordeNegro(){
-        colorBorde = Color.BLACK
+    fun cambiarColorBorde(nuevoColorBorde: Int){
+        colorBorde = nuevoColorBorde
     }
 }
