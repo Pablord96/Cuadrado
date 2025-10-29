@@ -1,12 +1,14 @@
 package com.example.cuadrado
 
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import model.Cuadrado
+import model.CuadradoBordes
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +32,27 @@ class MainActivity : AppCompatActivity() {
 
             //Asociar la vista con el objeto cuadrado
             //ContextCompact es una clase para aceder a recursos
-            val cuadrado : Cuadrado = Cuadrado(ContextCompat.getColor(this, R.color.red), inicialAncho, inicialAlto).apply{
+            /*val cuadrado : Cuadrado = Cuadrado(ContextCompat.getColor(this, R.color.red), inicialAncho, inicialAlto).apply{
+                x = inicialX
+                y = inicialY
+            }*/
+
+            /*val cuadrado : CuadradoBordes = CuadradoBordes(
+                ContextCompat.getColor(this, R.color.red),
+                inicialAncho,
+                inicialAlto
+            ).apply{
+                x = inicialX
+                y = inicialY
+                bordeColor = ContextCompat.getColor(this@MainActivity, R.color.black)
+            }*/
+
+            val cuadrado : CuadradoBordes = CuadradoBordes(
+                ContextCompat.getColor(this, R.color.red),
+                inicialAncho,
+                inicialAlto,
+                Color.BLACK // Color de borde inicial
+            ).apply{
                 x = inicialX
                 y = inicialY
             }
@@ -42,6 +64,8 @@ class MainActivity : AppCompatActivity() {
             var buttonAumentarTamanio : Button = findViewById<Button>(R.id.buttonAumentarTamanio)
             var buttonDisminuirtamanio : Button = findViewById<Button>(R.id.buttonDisminuirTamanio)
             var buttonCambiarColor : Button = findViewById<Button>(R.id.buttonCambiarColor)
+            var buttonCambiarColorBorde : Button = findViewById<Button>(R.id.buttonCambiarColorBorde)
+
 
             //Ponemos botones a la escucha
             buttonArriba.setOnClickListener{
@@ -76,7 +100,6 @@ class MainActivity : AppCompatActivity() {
 
                 // 3. Establecemos el nuevo tamaño
                 cuadrado.cambiarTamanio(nuevoAncho, nuevoAlto)
-
                 actualizarVista(cuadrado, cuadradoView)
             }
 
@@ -93,13 +116,17 @@ class MainActivity : AppCompatActivity() {
 
                 // 3. Establecemos el nuevo tamaño
                 cuadrado.cambiarTamanio(nuevoAncho, nuevoAlto)
-
                 actualizarVista(cuadrado, cuadradoView)
             }
 
             buttonCambiarColor.setOnClickListener{
                 //cuadrado.color = ContextCompat.getColor(this, R.color.blue)
                 cuadrado.color = generarColorAleatorio()
+                actualizarVista(cuadrado, cuadradoView)
+            }
+
+            buttonCambiarColorBorde.setOnClickListener{
+                cuadrado.colorBorde = generarColorAleatorio()
                 actualizarVista(cuadrado, cuadradoView)
             }
         } //post
@@ -114,15 +141,20 @@ class MainActivity : AppCompatActivity() {
         return android.graphics.Color.rgb(rojo, verde, azul)
     }
 
-    private fun actualizarVista (cuadrado:Cuadrado, cuadradoView:View){
+    private fun actualizarVista (cuadrado:CuadradoBordes, cuadradoView:View){
 
         //Aqui es donde enlazamos la vista con el objeto
         //La vista actulizara su ancho y su alto con los datos del objeto
         cuadradoView.layoutParams.width = cuadrado.ancho
         cuadradoView.layoutParams.height = cuadrado.alto
 
-        //Cambiamos el color
-        cuadradoView.setBackgroundColor(cuadrado.color)
+        // Creamos un drawable para el borde
+        val borderDrawable = GradientDrawable()
+        borderDrawable.setColor(cuadrado.color) // Color de fondo
+        borderDrawable.setStroke(10, cuadrado.colorBorde) // Ancho y color del borde
+
+        cuadradoView.background = borderDrawable // Usamos 'background' en lugar de 'setBackgroundColor'
+
 
         //Actulizamos las coordenadas
         cuadradoView.x = cuadrado.x.toFloat()

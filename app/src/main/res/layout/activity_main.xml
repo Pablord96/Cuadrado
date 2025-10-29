@@ -79,4 +79,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="Cambiar Color" />
+
+    <Button
+        android:id="@+id/buttonCambiarColorBorde"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonCambiarColor"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Cambiar Color Borde" />
 </RelativeLayout>
