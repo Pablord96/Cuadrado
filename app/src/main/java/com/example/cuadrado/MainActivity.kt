@@ -127,6 +127,7 @@ class MainActivity : AppCompatActivity() {
 
             buttonCambiarColorBorde.setOnClickListener{
                 cuadrado.colorBorde = generarColorAleatorio()
+                cuadrado.ponerBordeNegro()
                 actualizarVista(cuadrado, cuadradoView)
             }
         } //post
